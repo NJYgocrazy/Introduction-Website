@@ -13,6 +13,8 @@ This repo contains:
 docker compose up -d
 ```
 
+If you already have MySQL running on your machine and `3306` is occupied, this repo maps Docker MySQL to host port `3307`.
+
 ### 2) Configure server
 
 Copy `server/.env.example` to `server/.env` and adjust if needed.

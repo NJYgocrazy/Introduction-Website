@@ -9,7 +9,7 @@ services:
       MYSQL_PASSWORD: labpass
       TZ: Asia/Shanghai
     ports:
-      - "3306:3306"
+      - "3307:3306"
     command:
       - "--default-authentication-plugin=mysql_native_password"
       - "--character-set-server=utf8mb4"

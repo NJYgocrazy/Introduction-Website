@@ -24,8 +24,23 @@ async function bootstrap() {
     mkdirSync(absUploadDir, { recursive: true });
   }
 
+  const allowedOrigins = new Set(
+    webOrigin
+      .split(",")
+      .map((s) => s.trim())
+      .filter(Boolean)
+  );
+  allowedOrigins.add("http://localhost:5173");
+  allowedOrigins.add("http://127.0.0.1:5173");
+  allowedOrigins.add("http://localhost:4173");
+  allowedOrigins.add("http://127.0.0.1:4173");
+
   app.enableCors({
-    origin: webOrigin,
+    origin(origin, callback) {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.has(origin)) return callback(null, true);
+      return callback(new Error("Not allowed by CORS"), false);
+    },
     credentials: false,
     allowedHeaders: ["Content-Type", "Authorization"]
   });

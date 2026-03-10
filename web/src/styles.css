@@ -74,3 +74,47 @@ h3 {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
     monospace;
 }
+
+.carousel-center {
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: var(--shadow-card);
+}
+
+.carousel-hero {
+  box-shadow: var(--shadow-soft);
+}
+
+.carousel-arrow {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.80);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+  color: rgb(var(--c-ink));
+  opacity: 0.85;
+  transition: opacity 160ms ease;
+}
+
+.carousel-arrow:hover {
+  opacity: 1;
+}
+
+.carousel-dot {
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.carousel-dot[data-active="true"] {
+  border-color: rgba(25, 110, 95, 0.35);
+  background: rgba(25, 110, 95, 0.22);
+}
+
+.carousel-hero .carousel-dot {
+  border-color: rgba(255, 255, 255, 0.40);
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.carousel-hero .carousel-dot[data-active="true"] {
+  border-color: rgba(255, 255, 255, 0.90);
+  background: rgba(255, 255, 255, 0.90);
+}
