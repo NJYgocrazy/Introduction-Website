@@ -9,6 +9,7 @@ import {
   Put,
   UseGuards
 } from "@nestjs/common";
+import type { Person, PersonPublication } from "@prisma/client";
 
 import { AdminGuard } from "../../common/auth/admin.guard";
 import { PrismaService } from "../../prisma/prisma.service";
@@ -25,11 +26,11 @@ export class PeopleController {
 
   @Get()
   async list() {
-    const rows = await this.prisma.person.findMany({
+    const rows: Person[] = await this.prisma.person.findMany({
       orderBy: [{ ord: "asc" }, { id: "asc" }]
     });
 
-    const joins = await this.prisma.personPublication.findMany({
+    const joins: PersonPublication[] = await this.prisma.personPublication.findMany({
       where: { personId: { in: rows.map((r) => r.id) } },
       orderBy: [{ ord: "asc" }]
     });
@@ -52,7 +53,7 @@ export class PeopleController {
     const person = await this.prisma.person.findUnique({ where: { id } });
     if (!person) return null;
 
-    const joins = await this.prisma.personPublication.findMany({
+    const joins: PersonPublication[] = await this.prisma.personPublication.findMany({
       where: { personId: id },
       orderBy: [{ ord: "asc" }]
     });

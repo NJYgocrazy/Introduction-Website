@@ -1,4 +1,5 @@
 import { Injectable } from "@nestjs/common";
+import { Prisma } from "@prisma/client";
 
 import { PrismaService } from "../../prisma/prisma.service";
 import { CreatePersonDto, UpdatePersonDto } from "../dto/person.dto";
@@ -30,7 +31,7 @@ export class PeopleService {
         avatarUrl: dto.avatarUrl,
         email: dto.email,
         websiteUrl: dto.websiteUrl,
-        links: dto.links,
+        links: dto.links as Prisma.InputJsonValue | undefined,
         ord: dto.ord ?? 0
       }
     });
@@ -57,12 +58,12 @@ export class PeopleService {
         avatarUrl: dto.avatarUrl,
         email: dto.email,
         websiteUrl: dto.websiteUrl,
-        links: dto.links,
+        links: dto.links as Prisma.InputJsonValue | undefined,
         ord: dto.ord
       }
     });
 
-    if (publicationIds) {
+    if (publicationIds !== undefined) {
       await this.replacePublications(id, publicationIds);
     }
 

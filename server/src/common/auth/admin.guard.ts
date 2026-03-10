@@ -25,10 +25,28 @@ export class AdminGuard implements CanActivate {
       throw new UnauthorizedException("Server JWT secret is not configured");
     }
 
+    const decoded = this.verify(token, secret);
+    req.admin = decoded;
+    return true;
+  }
+
+  private verify(token: string, secret: string): AdminJwtPayload {
     try {
-      const payload = jwt.verify(token, secret) as AdminJwtPayload;
-      req.admin = payload;
-      return true;
+      const decoded = jwt.verify(token, secret) as unknown;
+      if (!decoded || typeof decoded !== "object") {
+        throw new UnauthorizedException("Invalid token");
+      }
+
+      const subRaw = (decoded as any).sub;
+      const usernameRaw = (decoded as any).username;
+      const sub = typeof subRaw === "number" ? subRaw : Number(subRaw);
+      const username = typeof usernameRaw === "string" ? usernameRaw : "";
+
+      if (!Number.isFinite(sub) || sub <= 0 || !username) {
+        throw new UnauthorizedException("Invalid token");
+      }
+
+      return { sub, username };
     } catch {
       throw new UnauthorizedException("Invalid token");
     }

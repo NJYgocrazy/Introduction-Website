@@ -1,4 +1,5 @@
 import { Body, Controller, Get, Put, UseGuards } from "@nestjs/common";
+import { Prisma } from "@prisma/client";
 
 import { AdminGuard } from "../../common/auth/admin.guard";
 import { PrismaService } from "../../prisma/prisma.service";
@@ -24,14 +25,14 @@ export class ContactController {
         addressEn: dto.addressEn,
         email: dto.email,
         phone: dto.phone,
-        links: dto.links
+        links: dto.links as Prisma.InputJsonValue | undefined
       },
       update: {
         addressZh: dto.addressZh,
         addressEn: dto.addressEn,
         email: dto.email,
         phone: dto.phone,
-        links: dto.links
+        links: dto.links as Prisma.InputJsonValue | undefined
       }
     });
   }
