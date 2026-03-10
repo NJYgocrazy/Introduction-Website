@@ -1,0 +1,17 @@
+{
+  "name": "lab-website-monorepo",
+  "private": true,
+  "workspaces": [
+    "server",
+    "web"
+  ],
+  "scripts": {
+    "dev": "concurrently -n server,web -c blue,magenta \"npm --workspace server run start:dev\" \"npm --workspace web run dev\"",
+    "build": "npm --workspace server run build && npm --workspace web run build",
+    "db:migrate": "npm --workspace server run prisma:migrate",
+    "db:seed": "npm --workspace server run prisma:seed"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  }
+}

@@ -1,0 +1,140 @@
+// If you change DB columns, run: npm run prisma:migrate
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model AdminUser {
+  id           Int      @id @default(autoincrement())
+  username     String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+}
+
+model LabProfile {
+  id        Int      @id @default(autoincrement())
+  nameZh    String
+  nameEn    String
+  introZh   String
+  introEn   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ContactInfo {
+  id        Int      @id @default(autoincrement())
+  addressZh String?
+  addressEn String?
+  email     String?
+  phone     String?
+  links     Json?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CarouselImage {
+  id        Int      @id @default(autoincrement())
+  imageUrl  String
+  titleZh   String?
+  titleEn   String?
+  captionZh String?
+  captionEn String?
+  linkUrl   String?
+  ord       Int      @default(0)
+  enabled   Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ResearchArea {
+  id        Int      @id @default(autoincrement())
+  nameZh    String
+  nameEn    String
+  descZh    String?
+  descEn    String?
+  ord       Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Publication {
+  id          Int       @id @default(autoincrement())
+  titleZh     String?
+  titleEn     String?
+  abstractZh  String?
+  abstractEn  String?
+  venue       String?
+  externalUrl String
+  publishedAt DateTime?
+  tags        Json?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  people PersonPublication[]
+}
+
+model Person {
+  id         Int      @id @default(autoincrement())
+  role       String
+  nameZh     String
+  nameEn     String
+  titleZh    String?
+  titleEn    String?
+  bioZh      String?
+  bioEn      String?
+  avatarUrl  String?
+  email      String?
+  websiteUrl String?
+  links      Json?
+  ord        Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  publications PersonPublication[]
+  awards       Award[]
+}
+
+model PersonPublication {
+  personId      Int
+  publicationId Int
+  ord           Int @default(0)
+
+  person      Person      @relation(fields: [personId], references: [id], onDelete: Cascade)
+  publication Publication @relation(fields: [publicationId], references: [id], onDelete: Cascade)
+
+  @@id([personId, publicationId])
+  @@index([publicationId])
+}
+
+model Award {
+  id        Int      @id @default(autoincrement())
+  titleZh   String
+  titleEn   String
+  descZh    String?
+  descEn    String?
+  imageUrl  String?
+  date      DateTime?
+  personId  Int?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  person Person? @relation(fields: [personId], references: [id], onDelete: SetNull)
+}
+
+model RecruitmentPost {
+  id           Int      @id @default(autoincrement())
+  titleZh      String
+  titleEn      String
+  contentZh    String
+  contentEn    String
+  applyUrl     String?
+  isOpen       Boolean  @default(true)
+  ord          Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
