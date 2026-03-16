@@ -1,11 +1,11 @@
-<template>
+﻿<template>
   <div>
     <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
       <div>
         <div class="text-xs tracking-widest uppercase opacity-70">Admin</div>
         <h1 class="text-3xl font-semibold mt-2">{{ t('admin.dashboard') }}</h1>
         <p class="text-sm opacity-80 mt-2">
-          {{ locale === 'zh' ? '内容更新会立即影响前台展示。' : 'Changes affect the public site immediately.' }}
+          {{ 'Changes affect the public site immediately.' }}
         </p>
       </div>
 
@@ -81,7 +81,7 @@
           :token="token"
           resource="/admin/people"
           :fields="peopleFields"
-          :hint="locale === 'zh' ? 'publicationIds 用 JSON 数组，例如 [1,2]' : 'publicationIds as JSON array, e.g. [1,2]'"
+          :hint="'publicationIds as JSON array, e.g. [1,2]'"
         />
 
         <CrudManager
@@ -169,14 +169,7 @@ const contactFields: FieldDef[] = [
 ];
 
 const carouselFields: FieldDef[] = [
-  { key: "imageUrl", label: "imageUrl", type: "url" },
-  { key: "titleZh", label: "titleZh", type: "text" },
-  { key: "titleEn", label: "titleEn", type: "text" },
-  { key: "captionZh", label: "captionZh", type: "textarea" },
-  { key: "captionEn", label: "captionEn", type: "textarea" },
-  { key: "linkUrl", label: "linkUrl", type: "url" },
-  { key: "ord", label: "ord", type: "number" },
-  { key: "enabled", label: "enabled", type: "checkbox" }
+  { key: "imageUrl", label: "imageUrl", type: "url" }
 ];
 
 const areaFields: FieldDef[] = [
@@ -262,3 +255,5 @@ async function logout() {
   await router.push("/");
 }
 </script>
+
+

@@ -30,14 +30,7 @@ export class CarouselController {
   create(@Body() dto: CreateCarouselImageDto) {
     return this.prisma.carouselImage.create({
       data: {
-        imageUrl: dto.imageUrl,
-        titleZh: dto.titleZh,
-        titleEn: dto.titleEn,
-        captionZh: dto.captionZh,
-        captionEn: dto.captionEn,
-        linkUrl: dto.linkUrl,
-        ord: dto.ord ?? 0,
-        enabled: dto.enabled ?? true
+        imageUrl: dto.imageUrl
       }
     });
   }
@@ -50,14 +43,7 @@ export class CarouselController {
     return this.prisma.carouselImage.update({
       where: { id },
       data: {
-        imageUrl: dto.imageUrl,
-        titleZh: dto.titleZh,
-        titleEn: dto.titleEn,
-        captionZh: dto.captionZh,
-        captionEn: dto.captionEn,
-        linkUrl: dto.linkUrl,
-        ord: dto.ord,
-        enabled: dto.enabled
+        imageUrl: dto.imageUrl
       }
     });
   }
