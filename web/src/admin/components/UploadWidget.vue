@@ -1,8 +1,8 @@
-﻿<template>
+<template>
   <div class="card rounded-xl2 p-5">
     <div class="text-xs tracking-widest uppercase opacity-70">{{ label }}</div>
     <div class="text-sm opacity-80 mt-2">
-      {{ locale === 'zh' ? '上传图片后可复制 URL 填入表单。' : 'Upload then copy the URL into forms.' }}
+      {{ locale === "zh" ? "上传图片后可复制 URL 填入表单。" : "Upload then copy the URL into forms." }}
     </div>
 
     <div class="mt-4 flex flex-col sm:flex-row sm:items-center gap-3">
@@ -13,12 +13,12 @@
         :disabled="!file || loading"
         @click.prevent="upload"
       >
-        {{ loading ? '...' : (locale === 'zh' ? '上传' : 'Upload') }}
+        {{ loading ? "..." : locale === "zh" ? "上传" : "Upload" }}
       </button>
     </div>
 
     <div v-if="file" class="mt-2 text-xs opacity-70">
-      {{ locale === 'zh' ? '已选择：' : 'Selected: ' }}{{ file.name }}
+      {{ locale === "zh" ? "已选择：" : "Selected: " }}{{ file.name }}
     </div>
 
     <div v-if="result" class="mt-4">
@@ -30,10 +30,10 @@
 
       <div class="mt-3 flex gap-2">
         <button type="button" class="btn rounded-lg px-3 py-2 text-sm" @click.prevent="copy(result.url)">
-          {{ locale === 'zh' ? '复制相对地址' : 'Copy Relative' }}
+          {{ locale === "zh" ? "复制相对地址" : "Copy Relative" }}
         </button>
         <button type="button" class="btn rounded-lg px-3 py-2 text-sm" @click.prevent="copy(fullUrl)">
-          {{ locale === 'zh' ? '复制完整地址' : 'Copy Full' }}
+          {{ locale === "zh" ? "复制完整地址" : "Copy Full" }}
         </button>
       </div>
 
@@ -62,7 +62,12 @@ const result = ref<{ filename: string; url: string } | null>(null);
 const locale = computed(() => getLocale());
 const label = computed(() => props.label ?? (locale.value === "zh" ? "上传" : "Upload"));
 
-const fullUrl = computed(() => (result.value ? `${apiBaseUrl()}${result.value.url}` : ""));
+const fullUrl = computed(() => {
+  if (!result.value) return "";
+  const url = String(result.value.url ?? "");
+  if (/^https?:\/\//i.test(url)) return url;
+  return `${apiBaseUrl()}${url}`;
+});
 
 function onPick(e: Event) {
   const input = e.target as HTMLInputElement;
@@ -99,6 +104,6 @@ async function copy(text: string) {
 }
 
 function isImageUrl(url: string) {
-  return /\.(png|jpg|jpeg|gif|webp|svg)(\?|$)/i.test(url) || url.includes("/uploads/");
+  return /^https?:\/\//i.test(url) || /\.(png|jpg|jpeg|gif|webp|svg)(\?|$)/i.test(url) || url.includes("/uploads/");
 }
 </script>

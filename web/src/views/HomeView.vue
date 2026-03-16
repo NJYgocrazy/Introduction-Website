@@ -74,7 +74,7 @@
           </h2>
         </div>
 
-        <div class="grid grid-cols-1 gap-4">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
           <ResearchAreaCard v-for="item in visibleResearchAreaCards" :key="item.key" :row="item" />
           <div v-if="!visibleResearchAreaCards.length" class="card rounded-xl2 p-6 text-sm opacity-80">
             {{ locale === "zh" ? "暂无研究内容。" : "No research content yet." }}
