@@ -63,7 +63,8 @@
       </section>
     </div>
 
-    <div class="mt-12">
+    <div class="mt-12 full-bleed px-4 sm:px-8">
+      <div class="mx-auto max-w-[1400px]">
       <section>
         <div class="text-center mb-6">
           <!-- <div class="text-xs tracking-widest uppercase opacity-70">Research</div> -->
@@ -103,6 +104,7 @@
         </div>
       </section>
     </div>
+  </div>
   </div>
 </template>
 
@@ -278,3 +280,10 @@ const visibleResearchAreaCards = computed<ResearchAreaCardRow[]>(() =>
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
 }
 </style>
+
+
+
+
+
+
+
