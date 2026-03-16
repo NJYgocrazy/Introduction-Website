@@ -1,7 +1,7 @@
 ﻿<template>
   <div class="relative">
     <div class="full-bleed relative w-full h-[420px] lg:h-[520px] overflow-hidden z-0">
-      <Carousel v-if="carousel.length" variant="hero" :rounded="false" :images="carousel" class="h-full w-full" />
+      <Carousel v-if="carousel.length" variant="hero" :rounded="false" :images="carousel" :image-only="true" class="h-full w-full" />
       <div
         v-else
         class="h-full w-full flex items-end"
@@ -280,6 +280,7 @@ const visibleResearchAreaCards = computed<ResearchAreaCardRow[]>(() =>
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
 }
 </style>
+
 
 
 

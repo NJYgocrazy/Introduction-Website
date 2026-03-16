@@ -19,12 +19,12 @@
       <div class="absolute inset-0 bg-center bg-cover" :style="{ backgroundImage: `url(${img.imageUrl})` }" />
 
       <div
-        v-if="variant === 'hero'"
+        v-if="!props.imageOnly && variant === 'hero'"
         class="absolute inset-0"
         style="background: linear-gradient(120deg, rgba(0,0,0,0.50), rgba(0,0,0,0.05))"
       />
       <div
-        v-else
+        v-else-if="!props.imageOnly"
         class="absolute inset-0"
         style="background: linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.20))"
       />
@@ -53,7 +53,7 @@
 
     <div class="relative flex flex-col justify-end" :class="heightClass">
       <div
-        v-if="variant === 'hero'"
+        v-if="!props.imageOnly && variant === 'hero'"
         class="relative p-6 sm:p-10"
         style="color: rgba(255,255,255,0.98)"
       >
@@ -83,7 +83,7 @@
       </div>
 
       <div
-        v-else-if="titleText || captionText || (showDots && images.length > 1)"
+        v-else-if="!props.imageOnly && (titleText || captionText || (showDots && images.length > 1))"
         class="absolute inset-x-0 bottom-0 border-t"
         style="border-color: rgb(var(--c-border)); background: rgba(255,255,255,0.92)"
       >
@@ -110,6 +110,25 @@
               aria-label="Slide"
             />
           </div>
+        </div>
+      </div>
+
+      <div
+        v-else-if="props.imageOnly && showDots && images.length > 1"
+        class="absolute inset-x-0 bottom-4 flex items-center justify-center"
+      >
+        <div class="flex items-center gap-2 rounded-full px-3 py-1.5" style="background: rgba(0,0,0,0.18)">
+          <button
+            v-for="(img, idx) in images"
+            :key="img.id + '-pure-' + idx"
+            type="button"
+            class="carousel-dot h-2.5 rounded-full transition-all"
+            :data-active="idx === active"
+            :style="{ width: idx === active ? '24px' : '10px' }"
+            @pointerdown.stop
+            @click="go(idx)"
+            aria-label="Slide"
+          />
         </div>
       </div>
     </div>
@@ -141,6 +160,7 @@ const props = withDefaults(
     showArrows?: boolean;
     showDots?: boolean;
     heightClass?: string;
+    imageOnly?: boolean;
   }>(),
   {
     variant: "hero",
@@ -149,7 +169,8 @@ const props = withDefaults(
     intervalMs: 5200,
     pauseOnHover: true,
     showArrows: true,
-    showDots: true
+    showDots: true,
+    imageOnly: false
   }
 );
 
@@ -160,26 +181,16 @@ const titleText = computed(() => {
   const img = props.images[active.value];
   if (!img) return "";
   const locale = getLocale();
-  return (
-    (locale === "zh" ? img.titleZh : img.titleEn) ??
-    img.titleZh ??
-    img.titleEn ??
-    ""
-  );
+  return (locale === "zh" ? img.titleZh : img.titleEn) ?? img.titleZh ?? img.titleEn ?? "";
 });
 
-const kickerText = computed(() => (getLocale() === "zh" ? "研究实验室" : "Research Lab"));
+const kickerText = computed(() => (getLocale() === "zh" ? "Research Lab" : "Research Lab"));
 
 const captionText = computed(() => {
   const img = props.images[active.value];
   if (!img) return "";
   const locale = getLocale();
-  return (
-    (locale === "zh" ? img.captionZh : img.captionEn) ??
-    img.captionZh ??
-    img.captionEn ??
-    ""
-  );
+  return (locale === "zh" ? img.captionZh : img.captionEn) ?? img.captionZh ?? img.captionEn ?? "";
 });
 
 const heightClass = computed(() => {
@@ -187,9 +198,7 @@ const heightClass = computed(() => {
   return props.variant === "hero" ? "min-h-[260px] sm:min-h-[360px]" : "min-h-[220px] sm:min-h-[300px]";
 });
 
-const variantClass = computed(() => {
-  return props.variant === "hero" ? "carousel-hero" : "carousel-center";
-});
+const variantClass = computed(() => (props.variant === "hero" ? "carousel-hero" : "carousel-center"));
 
 function go(idx: number) {
   if (props.images.length === 0) return;
@@ -306,7 +315,7 @@ function resetPointer(e?: PointerEvent) {
 .carousel {
   touch-action: pan-y;
   width: 100%;
-    height: 100%;
+  height: 100%;
 }
 
 .line-clamp-2 {

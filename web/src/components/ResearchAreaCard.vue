@@ -11,11 +11,11 @@
         </div>
       </div>
 
-      <div class="md:w-72 md:border-l" style="border-color: rgb(var(--c-border))">
+      <!-- <div class="md:w-72 md:border-l" style="border-color: rgb(var(--c-border))">
         <div class="h-48 md:h-full bg-center bg-cover rounded-br-xl" :style="{
           backgroundImage: imageStyle
         }" role="img" :aria-label="nameText" />
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
