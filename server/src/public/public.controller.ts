@@ -47,7 +47,6 @@ export class PublicController {
   @Get("carousel")
   async getCarousel() {
     return this.prisma.carouselImage.findMany({
-      where: { enabled: true },
       orderBy: [{ ord: "asc" }, { id: "asc" }]
     });
   }
@@ -148,7 +147,7 @@ export class PublicController {
 
     const awards = await this.prisma.award.findMany({
       where: { personId: id },
-      orderBy: [{ date: "desc" }, { id: "desc" }]
+      orderBy: [{ id: "desc" }]
     });
 
     return {
@@ -161,7 +160,7 @@ export class PublicController {
   @Get("awards")
   async getAwards() {
     return this.prisma.award.findMany({
-      orderBy: [{ date: "desc" }, { id: "desc" }]
+      orderBy: [{ id: "desc" }]
     });
   }
 
@@ -173,3 +172,6 @@ export class PublicController {
     });
   }
 }
+
+
+

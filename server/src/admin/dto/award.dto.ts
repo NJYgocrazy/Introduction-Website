@@ -1,4 +1,4 @@
-import { IsISO8601, IsInt, IsOptional, IsString, IsUrl } from "class-validator";
+import { IsInt, IsOptional, IsString, IsUrl } from "class-validator";
 
 export class CreateAwardDto {
   @IsString()
@@ -9,20 +9,8 @@ export class CreateAwardDto {
 
   @IsOptional()
   @IsString()
-  descZh?: string;
-
-  @IsOptional()
-  @IsString()
-  descEn?: string;
-
-  @IsOptional()
-  @IsString()
   @IsUrl({ require_tld: false })
   imageUrl?: string;
-
-  @IsOptional()
-  @IsISO8601()
-  date?: string;
 
   @IsOptional()
   @IsInt()
@@ -40,20 +28,8 @@ export class UpdateAwardDto {
 
   @IsOptional()
   @IsString()
-  descZh?: string;
-
-  @IsOptional()
-  @IsString()
-  descEn?: string;
-
-  @IsOptional()
-  @IsString()
   @IsUrl({ require_tld: false })
   imageUrl?: string;
-
-  @IsOptional()
-  @IsISO8601()
-  date?: string;
 
   @IsOptional()
   @IsInt()

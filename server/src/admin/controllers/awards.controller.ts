@@ -14,12 +14,6 @@ import { AdminGuard } from "../../common/auth/admin.guard";
 import { PrismaService } from "../../prisma/prisma.service";
 import { CreateAwardDto, UpdateAwardDto } from "../dto/award.dto";
 
-function parseDate(value?: string): Date | undefined {
-  if (!value) return undefined;
-  const d = new Date(value);
-  return Number.isNaN(d.getTime()) ? undefined : d;
-}
-
 @UseGuards(AdminGuard)
 @Controller("admin/awards")
 export class AwardsController {
@@ -28,7 +22,7 @@ export class AwardsController {
   @Get()
   list() {
     return this.prisma.award.findMany({
-      orderBy: [{ date: "desc" }, { id: "desc" }]
+      orderBy: [{ id: "desc" }]
     });
   }
 
@@ -38,10 +32,7 @@ export class AwardsController {
       data: {
         titleZh: dto.titleZh,
         titleEn: dto.titleEn,
-        descZh: dto.descZh,
-        descEn: dto.descEn,
         imageUrl: dto.imageUrl,
-        date: parseDate(dto.date),
         personId: dto.personId
       }
     });
@@ -57,10 +48,7 @@ export class AwardsController {
       data: {
         titleZh: dto.titleZh,
         titleEn: dto.titleEn,
-        descZh: dto.descZh,
-        descEn: dto.descEn,
         imageUrl: dto.imageUrl,
-        date: dto.date ? parseDate(dto.date) : undefined,
         personId: dto.personId
       }
     });

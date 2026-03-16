@@ -6,14 +6,14 @@
           <img v-if="person.avatarUrl" :src="person.avatarUrl" class="h-full w-full object-cover" alt="avatar" />
         </div>
         <div class="min-w-0">
-          <div class="text-2xl font-semibold truncate">{{ pickText(person, 'name') }}</div>
-          <div class="text-sm opacity-80 truncate">{{ pickText(person, 'title') }}</div>
+          <div class="text-2xl font-semibold truncate">{{ pickText(person, "name") }}</div>
+          <div class="text-sm opacity-80 truncate">{{ pickText(person, "title") }}</div>
           <div class="text-xs opacity-60 mt-1">{{ person.role }}</div>
         </div>
       </div>
 
       <div class="mt-5 text-sm leading-6 opacity-85 whitespace-pre-line">
-        {{ pickText(person, 'bio') }}
+        {{ pickText(person, "bio") }}
       </div>
 
       <div class="mt-5 flex flex-wrap gap-2">
@@ -26,11 +26,7 @@
         >
           Website
         </a>
-        <a
-          v-if="person.email"
-          class="btn rounded-lg px-3 py-2 text-sm"
-          :href="`mailto:${person.email}`"
-        >
+        <a v-if="person.email" class="btn rounded-lg px-3 py-2 text-sm" :href="`mailto:${person.email}`">
           Email
         </a>
         <a
@@ -46,14 +42,14 @@
       </div>
 
       <RouterLink class="btn btn-primary rounded-lg px-4 py-2 text-sm mt-6 inline-block" to="/people">
-        {{ locale === 'zh' ? '返回人员列表' : 'Back to People' }}
+        {{ locale === "zh" ? "返回人员列表" : "Back to People" }}
       </RouterLink>
     </section>
 
     <section class="lg:col-span-8 space-y-6">
       <div class="card rounded-xl2 p-6">
         <div class="text-xs tracking-widest uppercase opacity-70">Publications</div>
-        <h2 class="text-xl font-semibold mt-2">{{ locale === 'zh' ? '文章发布' : 'Publications' }}</h2>
+        <h2 class="text-xl font-semibold mt-2">{{ locale === "zh" ? "文章发布" : "Publications" }}</h2>
 
         <div class="mt-4 grid grid-cols-1 gap-3" v-if="publications.length">
           <a
@@ -64,35 +60,33 @@
             target="_blank"
             rel="noreferrer"
           >
-            <div class="font-semibold">{{ pickText(p, 'title') || fallbackTitle }}</div>
-            <div class="text-sm opacity-75 mt-1">{{ p.venue || '' }}</div>
+            <div class="font-semibold">{{ pickText(p, "title") || fallbackTitle }}</div>
+            <div class="text-sm opacity-75 mt-1">{{ p.venue || "" }}</div>
           </a>
         </div>
         <div v-else class="text-sm opacity-75 mt-4">
-          {{ locale === 'zh' ? '暂无关联文章。' : 'No linked publications yet.' }}
+          {{ locale === "zh" ? "暂无关联文章。" : "No linked publications yet." }}
         </div>
       </div>
 
       <div class="card rounded-xl2 p-6">
         <div class="text-xs tracking-widest uppercase opacity-70">Awards</div>
-        <h2 class="text-xl font-semibold mt-2">{{ locale === 'zh' ? '奖项与荣誉' : 'Awards & Honors' }}</h2>
+        <h2 class="text-xl font-semibold mt-2">{{ locale === "zh" ? "奖项与荣誉" : "Awards & Honors" }}</h2>
 
         <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4" v-if="awards.length">
           <div v-for="a in awards" :key="a.id" class="btn rounded-lg p-4">
-            <div class="font-semibold">{{ pickText(a, 'title') }}</div>
-            <div class="text-xs opacity-60 mt-1 mono">{{ formatDate(a.date) }}</div>
-            <div class="text-sm opacity-80 mt-2 leading-6">{{ pickText(a, 'desc') }}</div>
+            <div class="font-semibold">{{ pickText(a, "title") }}</div>
           </div>
         </div>
         <div v-else class="text-sm opacity-75 mt-4">
-          {{ locale === 'zh' ? '暂无关联奖项。' : 'No linked awards yet.' }}
+          {{ locale === "zh" ? "暂无关联奖项。" : "No linked awards yet." }}
         </div>
       </div>
     </section>
   </div>
 
   <div v-else class="card rounded-xl2 p-6 text-sm opacity-80">
-    {{ locale === 'zh' ? '加载中或未找到该成员。' : 'Loading or not found.' }}
+    {{ locale === "zh" ? "加载中或未找到该成员。" : "Loading or not found." }}
   </div>
 </template>
 
@@ -116,9 +110,6 @@ type Award = {
   id: number;
   titleZh: string;
   titleEn: string;
-  descZh?: string | null;
-  descEn?: string | null;
-  date?: string | null;
 };
 
 type PersonDetail = {
@@ -162,11 +153,4 @@ async function load() {
 
 onMounted(load);
 watch(() => route.params.id, load);
-
-function formatDate(value?: string | null) {
-  if (!value) return "";
-  const d = new Date(value);
-  if (Number.isNaN(d.getTime())) return "";
-  return d.toISOString().slice(0, 10);
-}
 </script>

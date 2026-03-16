@@ -184,8 +184,6 @@ const areaFields: FieldDef[] = [
 const projectFields: FieldDef[] = [
   { key: "titleZh", label: "titleZh", type: "text" },
   { key: "titleEn", label: "titleEn", type: "text" },
-  { key: "descZh", label: "descZh", type: "textarea" },
-  { key: "descEn", label: "descEn", type: "textarea" },
   { key: "imageUrl", label: "imageUrl", type: "url" },
   { key: "linkUrl", label: "linkUrl", type: "url" },
   { key: "enabled", label: "enabled", type: "checkbox" },
@@ -219,10 +217,7 @@ const peopleFields: FieldDef[] = [
 const awardFields: FieldDef[] = [
   { key: "titleZh", label: "titleZh", type: "text" },
   { key: "titleEn", label: "titleEn", type: "text" },
-  { key: "descZh", label: "descZh", type: "textarea" },
-  { key: "descEn", label: "descEn", type: "textarea" },
   { key: "imageUrl", label: "imageUrl", type: "url" },
-  { key: "date", label: "date", type: "date" },
   { key: "personId", label: "personId", type: "number" }
 ];
 
@@ -252,6 +247,7 @@ async function logout() {
   await router.push("/");
 }
 </script>
+
 
 
 
