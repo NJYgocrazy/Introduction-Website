@@ -14,12 +14,6 @@ import { AdminGuard } from "../../common/auth/admin.guard";
 import { PrismaService } from "../../prisma/prisma.service";
 import { CreatePublicationDto, UpdatePublicationDto } from "../dto/publication.dto";
 
-function parseDate(value?: string): Date | undefined {
-  if (!value) return undefined;
-  const d = new Date(value);
-  return Number.isNaN(d.getTime()) ? undefined : d;
-}
-
 @UseGuards(AdminGuard)
 @Controller("admin/publications")
 export class PublicationsController {
@@ -28,7 +22,7 @@ export class PublicationsController {
   @Get()
   list() {
     return this.prisma.publication.findMany({
-      orderBy: [{ publishedAt: "desc" }, { id: "desc" }]
+      orderBy: [{ id: "desc" }]
     });
   }
 
@@ -40,10 +34,7 @@ export class PublicationsController {
         titleEn: dto.titleEn,
         abstractZh: dto.abstractZh,
         abstractEn: dto.abstractEn,
-        venue: dto.venue,
-        externalUrl: dto.externalUrl,
-        publishedAt: parseDate(dto.publishedAt),
-        tags: dto.tags ?? undefined
+        externalUrl: dto.externalUrl
       }
     });
   }
@@ -60,10 +51,7 @@ export class PublicationsController {
         titleEn: dto.titleEn,
         abstractZh: dto.abstractZh,
         abstractEn: dto.abstractEn,
-        venue: dto.venue,
-        externalUrl: dto.externalUrl,
-        publishedAt: dto.publishedAt ? parseDate(dto.publishedAt) : undefined,
-        tags: dto.tags ?? undefined
+        externalUrl: dto.externalUrl
       }
     });
   }

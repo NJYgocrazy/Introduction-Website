@@ -197,10 +197,7 @@ const publicationFields: FieldDef[] = [
   { key: "titleEn", label: "titleEn", type: "text" },
   { key: "abstractZh", label: "abstractZh", type: "textarea" },
   { key: "abstractEn", label: "abstractEn", type: "textarea" },
-  { key: "venue", label: "venue", type: "text" },
   { key: "externalUrl", label: "externalUrl", type: "url" },
-  { key: "publishedAt", label: "publishedAt", type: "date" },
-  { key: "tags", label: "tags (json array)", type: "json" }
 ];
 
 const peopleFields: FieldDef[] = [
@@ -255,5 +252,6 @@ async function logout() {
   await router.push("/");
 }
 </script>
+
 
 

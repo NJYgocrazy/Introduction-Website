@@ -1,4 +1,4 @@
-import { IsArray, IsISO8601, IsOptional, IsString, IsUrl } from "class-validator";
+import { IsOptional, IsString, IsUrl } from "class-validator";
 
 export class CreatePublicationDto {
   @IsOptional()
@@ -17,22 +17,9 @@ export class CreatePublicationDto {
   @IsString()
   abstractEn?: string;
 
-  @IsOptional()
-  @IsString()
-  venue?: string;
-
   @IsString()
   @IsUrl({ require_tld: false })
   externalUrl!: string;
-
-  @IsOptional()
-  @IsISO8601()
-  publishedAt?: string;
-
-  @IsOptional()
-  @IsArray()
-  @IsString({ each: true })
-  tags?: string[];
 }
 
 export class UpdatePublicationDto {
@@ -54,19 +41,6 @@ export class UpdatePublicationDto {
 
   @IsOptional()
   @IsString()
-  venue?: string;
-
-  @IsOptional()
-  @IsString()
   @IsUrl({ require_tld: false })
   externalUrl?: string;
-
-  @IsOptional()
-  @IsISO8601()
-  publishedAt?: string;
-
-  @IsOptional()
-  @IsArray()
-  @IsString({ each: true })
-  tags?: string[];
 }
