@@ -17,6 +17,10 @@
       </button>
     </div>
 
+    <div v-if="file" class="mt-2 text-xs opacity-70">
+      {{ locale === 'zh' ? '已选择：' : 'Selected: ' }}{{ file.name }}
+    </div>
+
     <div v-if="result" class="mt-4">
       <div class="text-xs opacity-70">Relative</div>
       <div class="mono text-sm mt-1 select-all">{{ result.url }}</div>
@@ -63,10 +67,18 @@ const fullUrl = computed(() => (result.value ? `${apiBaseUrl()}${result.value.ur
 function onPick(e: Event) {
   const input = e.target as HTMLInputElement;
   file.value = input.files?.[0] ?? null;
+  if (file.value) {
+    void upload();
+  }
 }
 
 async function upload() {
   if (!file.value) return;
+  if (!props.token) {
+    error.value = locale.value === "zh" ? "未登录或登录已过期，请重新登录后台。" : "Not logged in. Please login again.";
+    return;
+  }
+
   error.value = "";
   loading.value = true;
   try {

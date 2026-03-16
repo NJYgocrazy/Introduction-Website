@@ -7,20 +7,29 @@
       </RouterLink> -->
 
       <nav class="hidden md:flex items-center justify-center gap-8 text-[1.08rem] font-medium flex-1">
-        <RouterLink class="nav-link" to="/">{{ t("nav.home") }}</RouterLink>
-        <RouterLink class="nav-link" to="/publications">{{ t("nav.publications") }}</RouterLink>
-        <RouterLink class="nav-link" to="/people">{{ t("nav.people") }}</RouterLink>
-        <RouterLink class="nav-link" to="/awards">{{ t("nav.awards") }}</RouterLink>
-        <RouterLink class="nav-link" to="/recruitment">{{ t("nav.recruitment") }}</RouterLink>
+        <!-- <RouterLink class="nav-link" to="/">{{ t("nav.home") }}</RouterLink> -->
+         <RouterLink class="nav-link" to="/">Home</RouterLink>
+        <!-- <RouterLink class="nav-link" to="/publications">{{ t("nav.publications") }}</RouterLink> -->
+        <RouterLink class="nav-link" to="/">publications</RouterLink>
+        <!-- <RouterLink class="nav-link" to="/people">{{ t("nav.people") }}</RouterLink> -->
+        <RouterLink class="nav-link" to="/">people</RouterLink>
+        <!-- <RouterLink class="nav-link" to="/awards">{{ t("nav.awards") }}</RouterLink> -->
+        <RouterLink class="nav-link" to="/">awards</RouterLink>
+        <!-- <RouterLink class="nav-link" to="/recruitment">{{ t("nav.recruitment") }}</RouterLink> -->
+        <RouterLink class="nav-link" to="/">recruitment</RouterLink>
       </nav>
     </div>
 
     <div class="md:hidden border-t px-4 py-3 flex flex-wrap gap-2 text-sm" style="border-color: rgb(var(--c-border)); background: rgb(255 255 255)">
-      <RouterLink class="btn rounded-lg px-3 py-2.5" to="/">{{ t("nav.home") }}</RouterLink>
-      <RouterLink class="btn rounded-lg px-3 py-2.5" to="/publications">{{ t("nav.publications") }}</RouterLink>
-      <RouterLink class="btn rounded-lg px-3 py-2.5" to="/people">{{ t("nav.people") }}</RouterLink>
-      <RouterLink class="btn rounded-lg px-3 py-2.5" to="/awards">{{ t("nav.awards") }}</RouterLink>
-      <RouterLink class="btn rounded-lg px-3 py-2.5" to="/recruitment">{{ t("nav.recruitment") }}</RouterLink>
+      <RouterLink class="nav-link" to="/">Home</RouterLink>
+      <!-- <RouterLink class="nav-link" to="/publications">{{ t("nav.publications") }}</RouterLink> -->
+      <RouterLink class="nav-link" to="/">publications</RouterLink>
+      <!-- <RouterLink class="nav-link" to="/people">{{ t("nav.people") }}</RouterLink> -->
+      <RouterLink class="nav-link" to="/">people</RouterLink>
+      <!-- <RouterLink class="nav-link" to="/awards">{{ t("nav.awards") }}</RouterLink> -->
+      <RouterLink class="nav-link" to="/">awards</RouterLink>
+      <!-- <RouterLink class="nav-link" to="/recruitment">{{ t("nav.recruitment") }}</RouterLink> -->
+      <RouterLink class="nav-link" to="/">recruitment</RouterLink>
     </div>
   </header>
 </template>
