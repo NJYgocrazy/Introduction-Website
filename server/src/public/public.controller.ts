@@ -1,4 +1,4 @@
-import { Controller, Get, Param, ParseIntPipe, Query } from "@nestjs/common";
+﻿import { Controller, Get, Param, ParseIntPipe, Query } from "@nestjs/common";
 import type { PersonPublication, Publication } from "@prisma/client";
 
 import { PrismaService } from "../prisma/prisma.service";
@@ -6,6 +6,33 @@ import { PrismaService } from "../prisma/prisma.service";
 @Controller("public")
 export class PublicController {
   constructor(private readonly prisma: PrismaService) {}
+
+  private isMissingAreaImageUrlColumn(error: unknown): boolean {
+    const message = String((error as any)?.message ?? "");
+    return message.includes("ResearchArea.imageUrl") || message.includes("ResearchArea`.`imageUrl");
+  }
+
+  private async getResearchAreasSafe() {
+    try {
+      return await this.prisma.researchArea.findMany({
+        orderBy: [{ ord: "asc" }, { id: "asc" }]
+      });
+    } catch (error) {
+      if (!this.isMissingAreaImageUrlColumn(error)) throw error;
+      const rows = await this.prisma.researchArea.findMany({
+        orderBy: [{ ord: "asc" }, { id: "asc" }],
+        select: {
+          id: true,
+          nameZh: true,
+          nameEn: true,
+          descZh: true,
+          descEn: true,
+          ord: true
+        }
+      });
+      return rows.map((row) => ({ ...row, imageUrl: null }));
+    }
+  }
 
   @Get("lab-profile")
   async getLabProfile() {
@@ -27,9 +54,53 @@ export class PublicController {
 
   @Get("research-areas")
   async getResearchAreas() {
-    return this.prisma.researchArea.findMany({
+    return this.getResearchAreasSafe();
+  }
+
+  @Get("research-projects")
+  async getResearchProjects() {
+    return this.prisma.researchProject.findMany({
+      where: { enabled: true },
       orderBy: [{ ord: "asc" }, { id: "asc" }]
     });
+  }
+
+  @Get("research-showcase")
+  async getResearchShowcase() {
+    const [areas, projects] = await Promise.all([
+      this.getResearchAreasSafe(),
+      this.prisma.researchProject.findMany({
+        where: { enabled: true },
+        orderBy: [{ ord: "asc" }, { id: "asc" }]
+      })
+    ]);
+
+    return [
+      ...areas.map((row) => ({
+        id: `area-${row.id}`,
+        sourceType: "area" as const,
+        sourceId: row.id,
+        titleZh: row.nameZh,
+        titleEn: row.nameEn,
+        descZh: row.descZh,
+        descEn: row.descEn,
+        imageUrl: row.imageUrl,
+        linkUrl: null,
+        ord: row.ord
+      })),
+      ...projects.map((row) => ({
+        id: `project-${row.id}`,
+        sourceType: "project" as const,
+        sourceId: row.id,
+        titleZh: row.titleZh,
+        titleEn: row.titleEn,
+        descZh: row.descZh,
+        descEn: row.descEn,
+        imageUrl: row.imageUrl,
+        linkUrl: row.linkUrl,
+        ord: row.ord
+      }))
+    ];
   }
 
   @Get("publications")

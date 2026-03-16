@@ -1,6 +1,6 @@
 import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
-import jwt from "jsonwebtoken";
+import * as jwt from "jsonwebtoken";
 
 export type AdminJwtPayload = {
   sub: number;
@@ -52,3 +52,4 @@ export class AdminGuard implements CanActivate {
     }
   }
 }
+

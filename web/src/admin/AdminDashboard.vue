@@ -60,6 +60,14 @@
         />
 
         <CrudManager
+          v-else-if="active === 'projects'"
+          :title="t('admin.sections.projects')"
+          :token="token"
+          resource="/admin/research-projects"
+          :fields="projectFields"
+        />
+
+        <CrudManager
           v-else-if="active === 'publications'"
           :title="t('admin.sections.publications')"
           :token="token"
@@ -130,13 +138,14 @@ const token = computed(() => auth.token);
 
 const fatal = ref("");
 const active = ref<
-  "lab" | "carousel" | "areas" | "publications" | "people" | "awards" | "recruitment" | "contact"
+  "lab" | "carousel" | "areas" | "projects" | "publications" | "people" | "awards" | "recruitment" | "contact"
 >("lab");
 
 const sections = computed(() => [
   { key: "lab", label: t("admin.sections.lab") },
   { key: "carousel", label: t("admin.sections.carousel") },
   { key: "areas", label: t("admin.sections.areas") },
+  { key: "projects", label: t("admin.sections.projects") },
   { key: "publications", label: t("admin.sections.publications") },
   { key: "people", label: t("admin.sections.people") },
   { key: "awards", label: t("admin.sections.awards") },
@@ -175,6 +184,18 @@ const areaFields: FieldDef[] = [
   { key: "nameEn", label: "nameEn", type: "text" },
   { key: "descZh", label: "descZh", type: "textarea" },
   { key: "descEn", label: "descEn", type: "textarea" },
+  { key: "imageUrl", label: "imageUrl", type: "url" },
+  { key: "ord", label: "ord", type: "number" }
+];
+
+const projectFields: FieldDef[] = [
+  { key: "titleZh", label: "titleZh", type: "text" },
+  { key: "titleEn", label: "titleEn", type: "text" },
+  { key: "descZh", label: "descZh", type: "textarea" },
+  { key: "descEn", label: "descEn", type: "textarea" },
+  { key: "imageUrl", label: "imageUrl", type: "url" },
+  { key: "linkUrl", label: "linkUrl", type: "url" },
+  { key: "enabled", label: "enabled", type: "checkbox" },
   { key: "ord", label: "ord", type: "number" }
 ];
 

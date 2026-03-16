@@ -1,0 +1,19 @@
+﻿FROM node:20-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+COPY server/package*.json ./server/
+COPY web/package*.json ./web/
+
+RUN npm ci
+
+COPY . .
+
+RUN npm --workspace server run build
+
+WORKDIR /app/server
+
+EXPOSE 3000
+
+CMD ["sh", "-c", "npm run prisma:generate && npm run start"]

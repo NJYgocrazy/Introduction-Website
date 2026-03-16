@@ -1,7 +1,7 @@
 <template>
   <div
-    class="carousel relative overflow-hidden rounded-xl2"
-    :class="variantClass"
+    class="carousel relative overflow-hidden"
+    :class="[variantClass, props.rounded ? 'rounded-xl2' : '']"
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
     @pointerdown="handlePointerDown"
@@ -35,6 +35,7 @@
       type="button"
       class="carousel-arrow absolute left-3 top-1/2 -translate-y-1/2 z-10 h-9 w-9 rounded-full flex items-center justify-center"
       aria-label="Previous slide"
+      @pointerdown.stop
       @click="prev"
     >
       <span aria-hidden="true">&#8249;</span>
@@ -44,6 +45,7 @@
       type="button"
       class="carousel-arrow absolute right-3 top-1/2 -translate-y-1/2 z-10 h-9 w-9 rounded-full flex items-center justify-center"
       aria-label="Next slide"
+      @pointerdown.stop
       @click="next"
     >
       <span aria-hidden="true">&#8250;</span>
@@ -56,7 +58,7 @@
         style="color: rgba(255,255,255,0.98)"
       >
         <div class="max-w-2xl">
-          <div class="text-xs tracking-widest uppercase opacity-80">Graduate Lab</div>
+          <div class="text-xs tracking-widest uppercase opacity-85">{{ kickerText }}</div>
           <h1 class="text-3xl sm:text-5xl font-semibold leading-tight mt-3">
             {{ titleText }}
           </h1>
@@ -73,6 +75,7 @@
             class="carousel-dot h-2.5 rounded-full transition-all"
             :data-active="idx === active"
             :style="{ width: idx === active ? '24px' : '10px' }"
+            @pointerdown.stop
             @click="go(idx)"
             aria-label="Slide"
           />
@@ -82,7 +85,7 @@
       <div
         v-else-if="titleText || captionText || (showDots && images.length > 1)"
         class="absolute inset-x-0 bottom-0 border-t"
-        style="border-color: rgba(0,0,0,0.06); background: rgba(255,255,255,0.75); backdrop-filter: blur(10px)"
+        style="border-color: rgb(var(--c-border)); background: rgba(255,255,255,0.92)"
       >
         <div class="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
           <div class="min-w-0">
@@ -102,6 +105,7 @@
               class="carousel-dot h-2.5 rounded-full transition-all"
               :data-active="idx === active"
               :style="{ width: idx === active ? '24px' : '10px' }"
+              @pointerdown.stop
               @click="go(idx)"
               aria-label="Slide"
             />
@@ -130,6 +134,7 @@ const props = withDefaults(
   defineProps<{
     images: CarouselImage[];
     variant?: "hero" | "center";
+    rounded?: boolean;
     autoplay?: boolean;
     intervalMs?: number;
     pauseOnHover?: boolean;
@@ -139,6 +144,7 @@ const props = withDefaults(
   }>(),
   {
     variant: "hero",
+    rounded: true,
     autoplay: true,
     intervalMs: 5200,
     pauseOnHover: true,
@@ -161,6 +167,8 @@ const titleText = computed(() => {
     ""
   );
 });
+
+const kickerText = computed(() => (getLocale() === "zh" ? "研究实验室" : "Research Lab"));
 
 const captionText = computed(() => {
   const img = props.images[active.value];
@@ -244,8 +252,15 @@ let pointerId: number | null = null;
 let startX = 0;
 let startY = 0;
 
+function isInteractiveTarget(t: EventTarget | null): boolean {
+  const el = t as HTMLElement | null;
+  if (!el) return false;
+  return Boolean(el.closest("button,a,[role='button'],input,textarea,select,label"));
+}
+
 function handlePointerDown(e: PointerEvent) {
   if (props.images.length <= 1) return;
+  if (isInteractiveTarget(e.target)) return;
   pointerId = e.pointerId;
   startX = e.clientX;
   startY = e.clientY;
@@ -254,6 +269,10 @@ function handlePointerDown(e: PointerEvent) {
 
 function handlePointerUp(e: PointerEvent) {
   if (pointerId == null || e.pointerId !== pointerId) return;
+  if (isInteractiveTarget(e.target)) {
+    resetPointer(e);
+    return;
+  }
   const dx = e.clientX - startX;
   const dy = e.clientY - startY;
   const absX = Math.abs(dx);
@@ -286,6 +305,8 @@ function resetPointer(e?: PointerEvent) {
 
 .carousel {
   touch-action: pan-y;
+  width: 100%;
+    height: 100%;
 }
 
 .line-clamp-2 {

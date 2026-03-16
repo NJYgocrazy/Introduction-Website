@@ -1,7 +1,7 @@
 import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
+import * as bcrypt from "bcryptjs";
+import * as jwt from "jsonwebtoken";
 
 import { PrismaService } from "../../prisma/prisma.service";
 
@@ -15,6 +15,10 @@ export class AuthService {
   async login(username: string, password: string) {
     const user = await this.prisma.adminUser.findUnique({ where: { username } });
     if (!user) {
+      throw new UnauthorizedException("Invalid credentials");
+    }
+
+    if (!user.passwordHash) {
       throw new UnauthorizedException("Invalid credentials");
     }
 

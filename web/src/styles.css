@@ -3,33 +3,51 @@
 @tailwind utilities;
 
 :root {
-  --c-paper: 248 247 244;
-  --c-ink: 22 26 29;
-  --c-mist: 232 230 225;
-  --c-accent: 25 110 95;
+  /* Academic + minimal theme (high contrast, low ornament) */
+  --c-bg: 248 250 252;
+  --c-surface: 255 255 255;
+  --c-ink: 15 23 42;
+  --c-muted: 71 85 105;
+  --c-border: 226 232 240;
 
-  --shadow-soft: 0 20px 60px rgba(0, 0, 0, 0.12);
-  --shadow-card: 0 14px 40px rgba(0, 0, 0, 0.10);
+  /* Tsinghua-like deep blue accent */
+  --c-accent: 15 58 120;
+
+  /* Back-compat for existing Tailwind tokens (if any are introduced later) */
+  --c-paper: var(--c-bg);
+  --c-mist: var(--c-border);
+
+  --shadow-soft: 0 18px 50px rgba(15, 23, 42, 0.10);
+  --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.06), 0 10px 26px rgba(15, 23, 42, 0.08);
 }
 
 html,
 body {
   height: 100%;
+  overflow-x: hidden;
 }
 
 body {
-  font-family: "Segoe UI", "Bahnschrift", system-ui, -apple-system, sans-serif;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   color: rgb(var(--c-ink));
-  background:
-    radial-gradient(1200px 800px at 10% 0%, rgba(25, 110, 95, 0.10), transparent 60%),
-    radial-gradient(900px 700px at 95% 20%, rgba(0, 0, 0, 0.06), transparent 55%),
-    linear-gradient(180deg, rgb(var(--c-paper)), rgb(var(--c-paper)));
+  background: linear-gradient(180deg, rgb(var(--c-bg)), rgb(var(--c-bg)));
+  text-rendering: geometricPrecision;
 }
 
 h1,
 h2,
 h3 {
-  font-family: "Palatino Linotype", "Book Antiqua", serif;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  letter-spacing: -0.01em;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+*:focus-visible {
+  outline: 2px solid rgba(15, 58, 120, 0.55);
+  outline-offset: 2px;
 }
 
 @keyframes rise {
@@ -44,30 +62,60 @@ h3 {
 }
 
 .page-enter {
-  animation: rise 420ms ease-out both;
+  animation: rise 280ms ease-out both;
+}
+
+.full-bleed {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
 }
 
 .card {
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(10px);
+  border: 1px solid rgb(var(--c-border));
+  background: rgb(var(--c-surface));
   box-shadow: var(--shadow-card);
 }
 
 .btn {
-  border: 1px solid rgba(0, 0, 0, 0.10);
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(10px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid rgb(var(--c-border));
+  background: rgb(var(--c-surface));
+  color: rgb(var(--c-ink));
+  transition: background-color 160ms ease, border-color 160ms ease, opacity 160ms ease;
+}
+
+.btn:hover {
+  background: rgb(241 245 249);
 }
 
 .btn-primary {
-  border-color: rgba(25, 110, 95, 0.30);
-  background: rgba(25, 110, 95, 0.12);
+  border-color: rgb(var(--c-accent));
+  background: rgb(var(--c-accent));
+  color: rgb(255 255 255);
+}
+
+.btn-primary:hover {
+  background: rgba(15, 58, 120, 0.92);
 }
 
 .input {
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgb(var(--c-border));
+  background: rgb(var(--c-surface));
+  color: rgb(var(--c-ink));
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: rgba(15, 58, 120, 0.45);
+  box-shadow: 0 0 0 3px rgba(15, 58, 120, 0.12);
 }
 
 .mono {
@@ -76,8 +124,8 @@ h3 {
 }
 
 .carousel-center {
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgb(var(--c-border));
+  background: rgb(var(--c-surface));
   box-shadow: var(--shadow-card);
 }
 
@@ -86,11 +134,10 @@ h3 {
 }
 
 .carousel-arrow {
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  background: rgba(255, 255, 255, 0.80);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
-  color: rgb(var(--c-ink));
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.14);
+  color: rgb(15 23 42);
   opacity: 0.85;
   transition: opacity 160ms ease;
 }
@@ -100,13 +147,13 @@ h3 {
 }
 
 .carousel-dot {
-  border: 1px solid rgba(0, 0, 0, 0.18);
-  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.70);
+  background: rgba(255, 255, 255, 0.55);
 }
 
 .carousel-dot[data-active="true"] {
-  border-color: rgba(25, 110, 95, 0.35);
-  background: rgba(25, 110, 95, 0.22);
+  border-color: rgba(15, 58, 120, 0.55);
+  background: rgba(15, 58, 120, 0.30);
 }
 
 .carousel-hero .carousel-dot {

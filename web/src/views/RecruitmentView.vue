@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <div class="text-xs tracking-widest uppercase opacity-70">Recruitment</div>
+      <!-- <div class="text-xs tracking-widest uppercase opacity-70">Recruitment</div> -->
       <h1 class="text-3xl font-semibold mt-2">{{ locale === 'zh' ? '招聘信息' : 'Recruitment' }}</h1>
       <p class="text-sm opacity-80 mt-2">
         {{ locale === 'zh' ? '欢迎加入我们，一起做有影响力的研究。' : 'Join us and build impactful research together.' }}

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <div class="text-xs tracking-widest uppercase opacity-70">Awards</div>
+      <!-- <div class="text-xs tracking-widest uppercase opacity-70">Awards</div> -->
       <h1 class="text-3xl font-semibold mt-2">{{ locale === 'zh' ? '奖项与成就' : 'Awards & Achievements' }}</h1>
       <p class="text-sm opacity-80 mt-2">
         {{ locale === 'zh' ? '记录我们的里程碑与荣誉。' : 'Milestones and recognitions.' }}

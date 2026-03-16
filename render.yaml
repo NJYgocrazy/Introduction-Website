@@ -1,0 +1,22 @@
+﻿services:
+  - type: web
+    name: labsite-api
+    env: node
+    plan: free
+    rootDir: .
+    buildCommand: npm install --include=dev && npm --workspace server run build
+    startCommand: npm --workspace server run start
+    healthCheckPath: /public/lab-profile
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: WEB_ORIGIN
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: UPLOAD_DIR
+        value: uploads

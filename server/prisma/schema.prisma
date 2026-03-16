@@ -57,7 +57,22 @@ model ResearchArea {
   nameEn    String
   descZh    String?
   descEn    String?
+  imageUrl  String?
   ord       Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ResearchProject {
+  id        Int      @id @default(autoincrement())
+  titleZh   String
+  titleEn   String
+  descZh    String?
+  descEn    String?
+  imageUrl  String?
+  linkUrl   String?
+  ord       Int      @default(0)
+  enabled   Boolean  @default(true)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

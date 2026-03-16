@@ -1,11 +1,11 @@
-import { IsInt, IsOptional, IsString } from "class-validator";
+import { IsBoolean, IsInt, IsOptional, IsString } from "class-validator";
 
-export class CreateResearchAreaDto {
+export class CreateResearchProjectDto {
   @IsString()
-  nameZh!: string;
+  titleZh!: string;
 
   @IsString()
-  nameEn!: string;
+  titleEn!: string;
 
   @IsOptional()
   @IsString()
@@ -20,18 +20,26 @@ export class CreateResearchAreaDto {
   imageUrl?: string;
 
   @IsOptional()
+  @IsString()
+  linkUrl?: string;
+
+  @IsOptional()
   @IsInt()
   ord?: number;
+
+  @IsOptional()
+  @IsBoolean()
+  enabled?: boolean;
 }
 
-export class UpdateResearchAreaDto {
+export class UpdateResearchProjectDto {
   @IsOptional()
   @IsString()
-  nameZh?: string;
+  titleZh?: string;
 
   @IsOptional()
   @IsString()
-  nameEn?: string;
+  titleEn?: string;
 
   @IsOptional()
   @IsString()
@@ -46,6 +54,15 @@ export class UpdateResearchAreaDto {
   imageUrl?: string;
 
   @IsOptional()
+  @IsString()
+  linkUrl?: string;
+
+  @IsOptional()
   @IsInt()
   ord?: number;
+
+  @IsOptional()
+  @IsBoolean()
+  enabled?: boolean;
 }
+

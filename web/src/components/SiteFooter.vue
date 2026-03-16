@@ -1,32 +1,35 @@
 <template>
-  <footer class="mt-10">
-    <div class="mx-auto max-w-6xl px-4 sm:px-8 pb-10">
-      <div class="card rounded-xl2 p-6">
-        <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
-          <div>
-            <div class="text-sm opacity-70">Contact</div>
-            <div class="text-lg font-semibold mt-1">{{ emailOrPlaceholder }}</div>
-            <div class="text-sm opacity-80 mt-2">{{ addressText }}</div>
-            <div class="text-sm opacity-80" v-if="contact?.phone">{{ contact.phone }}</div>
-          </div>
-
-          <div class="flex flex-wrap gap-2 items-center" v-if="linkEntries.length">
-            <a
-              v-for="[k, v] in linkEntries"
-              :key="k"
-              class="btn rounded-lg px-3 py-2 text-sm hover:opacity-90"
-              :href="String(v)"
-              target="_blank"
-              rel="noreferrer"
-            >
-              {{ k }}
-            </a>
+  <footer
+    class="mt-12 border-t"
+    style="border-color: rgb(var(--c-border)); background: rgb(var(--c-surface))"
+  >
+    <div class="mx-auto max-w-6xl px-4 sm:px-8 py-10">
+      <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
+        <div>
+          <div class="text-xs tracking-widest uppercase" style="color: rgb(var(--c-muted))">Contact</div>
+          <div class="text-base font-semibold mt-2">{{ emailOrPlaceholder }}</div>
+          <div class="text-sm mt-2" style="color: rgb(var(--c-muted))">{{ addressText }}</div>
+          <div class="text-sm mt-1" style="color: rgb(var(--c-muted))" v-if="contact?.phone">
+            {{ contact.phone }}
           </div>
         </div>
 
-        <div class="mt-6 text-xs opacity-60">
-          © {{ new Date().getFullYear() }} Lab Website
+        <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm" v-if="linkEntries.length">
+          <a
+            v-for="[k, v] in linkEntries"
+            :key="k"
+            class="footer-link"
+            :href="String(v)"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {{ k }}
+          </a>
         </div>
+      </div>
+
+      <div class="mt-8 text-xs" style="color: rgb(var(--c-muted))">
+        © {{ new Date().getFullYear() }} Lab Website
       </div>
     </div>
   </footer>
@@ -66,3 +69,15 @@ const linkEntries = computed(() => {
   return Object.entries(obj).filter(([, v]) => typeof v === "string" && String(v).startsWith("http"));
 });
 </script>
+
+<style scoped>
+.footer-link {
+  color: rgb(var(--c-accent));
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+</style>

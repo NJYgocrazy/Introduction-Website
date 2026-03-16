@@ -1,65 +1,60 @@
-<template>
-  <header class="sticky top-0 z-50">
-    <div class="mx-auto max-w-6xl px-4 sm:px-8 py-4">
-      <div class="card rounded-xl2 px-4 py-3 flex items-center justify-between">
-        <RouterLink to="/" class="flex items-baseline gap-2">
-          <span class="text-xl font-semibold tracking-tight">Lab</span>
-          <span class="text-xs opacity-70">Site</span>
-        </RouterLink>
+﻿<template>
+  <header class="sticky top-0 z-50 border-b" style="background: rgba(255,255,255,0.97); border-color: rgb(var(--c-border))">
+    <div class="mx-auto max-w-7xl px-4 sm:px-8 h-20 flex items-center justify-between gap-4">
+      <!-- <RouterLink to="/" class="flex items-baseline gap-2 shrink-0">
+        <span class="text-2xl font-semibold tracking-tight">Lab</span>
+        <span class="text-xs" style="color: rgb(var(--c-muted))">Recruitment</span>
+      </RouterLink> -->
 
-        <nav class="hidden md:flex items-center gap-5 text-sm">
-          <RouterLink class="hover:opacity-80" to="/">{{ t("nav.home") }}</RouterLink>
-          <RouterLink class="hover:opacity-80" to="/publications">{{ t("nav.publications") }}</RouterLink>
-          <RouterLink class="hover:opacity-80" to="/people">{{ t("nav.people") }}</RouterLink>
-          <RouterLink class="hover:opacity-80" to="/awards">{{ t("nav.awards") }}</RouterLink>
-          <RouterLink class="hover:opacity-80" to="/recruitment">{{ t("nav.recruitment") }}</RouterLink>
-        </nav>
+      <nav class="hidden md:flex items-center justify-center gap-8 text-[1.08rem] font-medium flex-1">
+        <RouterLink class="nav-link" to="/">{{ t("nav.home") }}</RouterLink>
+        <RouterLink class="nav-link" to="/publications">{{ t("nav.publications") }}</RouterLink>
+        <RouterLink class="nav-link" to="/people">{{ t("nav.people") }}</RouterLink>
+        <RouterLink class="nav-link" to="/awards">{{ t("nav.awards") }}</RouterLink>
+        <RouterLink class="nav-link" to="/recruitment">{{ t("nav.recruitment") }}</RouterLink>
+      </nav>
+    </div>
 
-        <div class="flex items-center gap-2">
-          <button
-            class="btn rounded-lg px-3 py-1.5 text-xs hover:opacity-90"
-            @click="toggleLocale"
-          >
-            {{ localeLabel }}
-          </button>
-
-          <RouterLink
-            class="btn btn-primary rounded-lg px-3 py-1.5 text-xs hover:opacity-90"
-            :to="adminHref"
-          >
-            {{ t("nav.admin") }}
-          </RouterLink>
-        </div>
-      </div>
-
-      <div class="md:hidden mt-3 flex flex-wrap gap-2 text-sm">
-        <RouterLink class="btn rounded-lg px-3 py-2" to="/">{{ t("nav.home") }}</RouterLink>
-        <RouterLink class="btn rounded-lg px-3 py-2" to="/publications">{{ t("nav.publications") }}</RouterLink>
-        <RouterLink class="btn rounded-lg px-3 py-2" to="/people">{{ t("nav.people") }}</RouterLink>
-        <RouterLink class="btn rounded-lg px-3 py-2" to="/awards">{{ t("nav.awards") }}</RouterLink>
-        <RouterLink class="btn rounded-lg px-3 py-2" to="/recruitment">{{ t("nav.recruitment") }}</RouterLink>
-      </div>
+    <div class="md:hidden border-t px-4 py-3 flex flex-wrap gap-2 text-sm" style="border-color: rgb(var(--c-border)); background: rgb(255 255 255)">
+      <RouterLink class="btn rounded-lg px-3 py-2.5" to="/">{{ t("nav.home") }}</RouterLink>
+      <RouterLink class="btn rounded-lg px-3 py-2.5" to="/publications">{{ t("nav.publications") }}</RouterLink>
+      <RouterLink class="btn rounded-lg px-3 py-2.5" to="/people">{{ t("nav.people") }}</RouterLink>
+      <RouterLink class="btn rounded-lg px-3 py-2.5" to="/awards">{{ t("nav.awards") }}</RouterLink>
+      <RouterLink class="btn rounded-lg px-3 py-2.5" to="/recruitment">{{ t("nav.recruitment") }}</RouterLink>
     </div>
   </header>
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
 import { RouterLink } from "vue-router";
 import { useI18n } from "vue-i18n";
 
-import { getLocale, setLocale } from "../i18n";
-import { useAuthStore } from "../stores/auth";
-
-const auth = useAuthStore();
 const { t } = useI18n();
-
-const adminHref = computed(() => (auth.isAuthed ? "/admin/dashboard" : "/admin/login"));
-
-const localeLabel = computed(() => (getLocale() === "zh" ? "EN" : "中文"));
-
-function toggleLocale() {
-  const next = getLocale() === "zh" ? "en" : "zh";
-  setLocale(next);
-}
 </script>
+
+<style scoped>
+.nav-link {
+  color: rgb(var(--c-muted));
+  transition: color 160ms ease, opacity 160ms ease;
+}
+
+.nav-link:hover {
+  color: rgb(var(--c-ink));
+}
+
+.router-link-active.nav-link {
+  color: rgb(var(--c-ink));
+  position: relative;
+}
+
+.router-link-active.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -14px;
+  height: 3px;
+  background: rgb(var(--c-accent));
+  opacity: 0.95;
+}
+</style>

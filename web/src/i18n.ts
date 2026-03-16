@@ -1,4 +1,4 @@
-import { createI18n } from "vue-i18n";
+﻿import { createI18n } from "vue-i18n";
 
 const STORAGE_KEY = "lab_site_locale";
 
@@ -37,6 +37,7 @@ export const i18n = createI18n({
           lab: "实验室信息",
           carousel: "轮播图",
           areas: "研究方向",
+          projects: "科研项目",
           publications: "文章",
           people: "人员",
           awards: "奖项",
@@ -71,6 +72,7 @@ export const i18n = createI18n({
           lab: "Lab Profile",
           carousel: "Carousel",
           areas: "Research Areas",
+          projects: "Research Projects",
           publications: "Publications",
           people: "People",
           awards: "Awards",
@@ -84,7 +86,6 @@ export const i18n = createI18n({
 });
 
 export function setLocale(locale: "zh" | "en") {
-  // vue-i18n stores locale as a ref in composition mode
   // @ts-expect-error - vue-i18n typing
   i18n.global.locale.value = locale;
   localStorage.setItem(STORAGE_KEY, locale);

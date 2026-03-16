@@ -4,7 +4,7 @@ import { ValidationPipe } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 import { HttpAdapterHost } from "@nestjs/core";
 import { ConfigService } from "@nestjs/config";
-import express from "express";
+import * as express from "express";
 import { existsSync, mkdirSync } from "fs";
 import { join } from "path";
 
