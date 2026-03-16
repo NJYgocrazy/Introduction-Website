@@ -1,6 +1,6 @@
 ﻿<template>
-  <div class="relative">
-    <div class="full-bleed relative w-full h-[420px] lg:h-[520px] overflow-hidden z-0">
+  <div class="relative pt-0 mt-0">
+    <div class="full-bleed relative w-full h-[420px] lg:h-[520px] overflow-hidden z-0" style="border-top: 0cap;">
       <Carousel v-if="carousel.length" variant="hero" :rounded="false" :images="carousel" :image-only="true" class="h-full w-full" />
       <div
         v-else

@@ -1,5 +1,5 @@
 ﻿<template>
-  <header class="sticky top-0 z-50 border-b" style="background: rgba(255,255,255,0.97); border-color: rgb(var(--c-border))">
+  <header class="sticky top-0 z-50 border-b" style="background: rgba(255,255,255,0.97); border-color: rgb(var(--c-border));border-bottom: none">
     <div class="mx-auto max-w-7xl px-4 sm:px-8 h-20 flex items-center justify-between gap-4">
       <nav class="hidden md:flex items-center justify-center gap-8 text-[1.08rem] font-medium flex-1">
         <RouterLink class="nav-link" to="/">Home</RouterLink>
