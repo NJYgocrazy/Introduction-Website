@@ -117,6 +117,7 @@ import { apiGet } from "../lib/api";
 import { getLocale } from "../i18n";
 import { pickText } from "../lib/fields";
 
+
 type LabProfile = {
   id: number;
   nameZh: string;

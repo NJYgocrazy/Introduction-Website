@@ -14,7 +14,7 @@
           </div>
         </div>
 
-        <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm" v-if="linkEntries.length">
+        <!-- <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm" v-if="linkEntries.length">
           <a
             v-for="[k, v] in linkEntries"
             :key="k"
@@ -25,7 +25,7 @@
           >
             {{ k }}
           </a>
-        </div>
+        </div> -->
       </div>
 
       <div class="mt-8 text-xs" style="color: rgb(var(--c-muted))">
