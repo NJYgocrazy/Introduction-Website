@@ -1,5 +1,4 @@
 ﻿import { Controller, Get, Param, ParseIntPipe, Query } from "@nestjs/common";
-import type { PersonPublication, Publication } from "@prisma/client";
 
 import { PrismaService } from "../prisma/prisma.service";
 
@@ -138,13 +137,6 @@ export class PublicController {
     const person = await this.prisma.person.findUnique({ where: { id } });
     if (!person) return null;
 
-    const publications: Array<PersonPublication & { publication: Publication }> =
-      await this.prisma.personPublication.findMany({
-      where: { personId: id },
-      orderBy: [{ ord: "asc" }],
-      include: { publication: true }
-    });
-
     const awards = await this.prisma.award.findMany({
       where: { personId: id },
       orderBy: [{ id: "desc" }]
@@ -152,7 +144,6 @@ export class PublicController {
 
     return {
       ...person,
-      publications: publications.map((p) => p.publication),
       awards
     };
   }
@@ -172,6 +163,3 @@ export class PublicController {
     });
   }
 }
-
-
-

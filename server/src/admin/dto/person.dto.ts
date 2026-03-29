@@ -36,6 +36,54 @@ export class CreatePersonDto {
 
   @IsOptional()
   @IsString()
+  teacherResumeZh?: string;
+
+  @IsOptional()
+  @IsString()
+  teacherResumeEn?: string;
+
+  @IsOptional()
+  @IsString()
+  teacherResearchZh?: string;
+
+  @IsOptional()
+  @IsString()
+  teacherResearchEn?: string;
+
+  @IsOptional()
+  @IsString()
+  teacherAchievementsZh?: string;
+
+  @IsOptional()
+  @IsString()
+  teacherAchievementsEn?: string;
+
+  @IsOptional()
+  @IsString()
+  studentResearchZh?: string;
+
+  @IsOptional()
+  @IsString()
+  studentResearchEn?: string;
+
+  @IsOptional()
+  @IsString()
+  studentAwardsZh?: string;
+
+  @IsOptional()
+  @IsString()
+  studentAwardsEn?: string;
+
+  @IsOptional()
+  @IsString()
+  studentEmploymentZh?: string;
+
+  @IsOptional()
+  @IsString()
+  studentEmploymentEn?: string;
+
+  @IsOptional()
+  @IsString()
   @IsUrl({ require_tld: false })
   avatarUrl?: string;
 
@@ -89,6 +137,54 @@ export class UpdatePersonDto {
   @IsOptional()
   @IsString()
   bioEn?: string;
+
+  @IsOptional()
+  @IsString()
+  teacherResumeZh?: string;
+
+  @IsOptional()
+  @IsString()
+  teacherResumeEn?: string;
+
+  @IsOptional()
+  @IsString()
+  teacherResearchZh?: string;
+
+  @IsOptional()
+  @IsString()
+  teacherResearchEn?: string;
+
+  @IsOptional()
+  @IsString()
+  teacherAchievementsZh?: string;
+
+  @IsOptional()
+  @IsString()
+  teacherAchievementsEn?: string;
+
+  @IsOptional()
+  @IsString()
+  studentResearchZh?: string;
+
+  @IsOptional()
+  @IsString()
+  studentResearchEn?: string;
+
+  @IsOptional()
+  @IsString()
+  studentAwardsZh?: string;
+
+  @IsOptional()
+  @IsString()
+  studentAwardsEn?: string;
+
+  @IsOptional()
+  @IsString()
+  studentEmploymentZh?: string;
+
+  @IsOptional()
+  @IsString()
+  studentEmploymentEn?: string;
 
   @IsOptional()
   @IsString()

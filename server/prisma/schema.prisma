@@ -102,6 +102,18 @@ model Person {
   titleEn    String?
   bioZh      String?
   bioEn      String?
+  teacherResumeZh       String? @db.Text
+  teacherResumeEn       String? @db.Text
+  teacherResearchZh     String? @db.Text
+  teacherResearchEn     String? @db.Text
+  teacherAchievementsZh String? @db.Text
+  teacherAchievementsEn String? @db.Text
+  studentResearchZh     String? @db.Text
+  studentResearchEn     String? @db.Text
+  studentAwardsZh       String? @db.Text
+  studentAwardsEn       String? @db.Text
+  studentEmploymentZh   String? @db.Text
+  studentEmploymentEn   String? @db.Text
   avatarUrl  String?
   email      String?
   websiteUrl String?

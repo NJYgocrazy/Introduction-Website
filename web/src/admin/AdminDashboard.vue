@@ -206,6 +206,18 @@ const peopleFields: FieldDef[] = [
   { key: "titleEn", label: "titleEn", type: "text" },
   { key: "bioZh", label: "bioZh", type: "textarea" },
   { key: "bioEn", label: "bioEn", type: "textarea" },
+  { key: "teacherResumeZh", label: "teacherResumeZh", type: "textarea" },
+  { key: "teacherResumeEn", label: "teacherResumeEn", type: "textarea" },
+  { key: "teacherResearchZh", label: "teacherResearchZh", type: "textarea" },
+  { key: "teacherResearchEn", label: "teacherResearchEn", type: "textarea" },
+  { key: "teacherAchievementsZh", label: "teacherAchievementsZh", type: "textarea" },
+  { key: "teacherAchievementsEn", label: "teacherAchievementsEn", type: "textarea" },
+  { key: "studentResearchZh", label: "studentResearchZh", type: "textarea" },
+  { key: "studentResearchEn", label: "studentResearchEn", type: "textarea" },
+  { key: "studentAwardsZh", label: "studentAwardsZh", type: "textarea" },
+  { key: "studentAwardsEn", label: "studentAwardsEn", type: "textarea" },
+  { key: "studentEmploymentZh", label: "studentEmploymentZh", type: "textarea" },
+  { key: "studentEmploymentEn", label: "studentEmploymentEn", type: "textarea" },
   { key: "avatarUrl", label: "avatarUrl", type: "url" },
   { key: "email", label: "email", type: "text" },
   { key: "websiteUrl", label: "websiteUrl", type: "url" },
@@ -247,6 +259,7 @@ async function logout() {
   await router.push("/");
 }
 </script>
+
 
 
 

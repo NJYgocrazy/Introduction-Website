@@ -1,0 +1,143 @@
+
+> lab-website-server@0.1.0 start:dev
+> nest start --watch
+
+[2J[3J[H[[90m11:44:46[0m] Starting compilation in watch mode...
+
+[[90m11:44:51[0m] Found 0 errors. Watching for file changes.
+
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[NestFactory] [39m[32mStarting Nest application...[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAppModule dependencies initialized[39m[38;5;3m +23ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPrismaModule dependencies initialized[39m[38;5;3m +6ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mConfigHostModule dependencies initialized[39m[38;5;3m +6ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mConfigModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPublicModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAdminModule dependencies initialized[39m[38;5;3m +2ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mPublicController {/public}:[39m[38;5;3m +98ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/public/lab-profile, GET} route[39m[38;5;3m +3ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/public/contact, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/public/carousel, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/public/research-areas, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/public/research-projects, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/public/research-showcase, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/public/publications, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/public/people, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/public/people/:id, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/public/awards, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/public/recruitment, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mAuthController {/admin/auth}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/auth/login, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/auth/me, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/auth/logout, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mUploadsController {/admin/uploads}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/uploads, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mCarouselController {/admin/carousel}:[39m[38;5;3m +1ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/carousel, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/carousel, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/carousel/:id, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/carousel/:id, DELETE} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mResearchAreasController {/admin/research-areas}:[39m[38;5;3m +1ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/research-areas, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/research-areas, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/research-areas/:id, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/research-areas/:id, DELETE} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mResearchProjectsController {/admin/research-projects}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/research-projects, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/research-projects, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/research-projects/:id, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/research-projects/:id, DELETE} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mPublicationsController {/admin/publications}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/publications, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/publications, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/publications/:id, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/publications/:id, DELETE} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mPeopleController {/admin/people}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/people, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/people/:id, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/people, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/people/:id, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/people/:id, DELETE} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mAwardsController {/admin/awards}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/awards, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/awards, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/awards/:id, PUT} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/awards/:id, DELETE} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mRecruitmentController {/admin/recruitment}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/recruitment, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/recruitment, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/recruitment/:id, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/recruitment/:id, DELETE} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mLabProfileController {/admin/lab-profile}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/lab-profile, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/lab-profile, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mContactController {/admin/contact}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/contact, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/admin/contact, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 88996  - [39m2026/03/27 11:44:55 [32m    LOG[39m [38;5;3m[NestApplication] [39m[32mNest application successfully started[39m[38;5;3m +20ms[39m
+[31m[Nest] 88996  - [39m2026/03/27 11:45:19 [31m  ERROR[39m [38;5;3m[HttpExceptionFilter] [39m[31m
+Invalid `this.prisma.person.findMany()` invocation in
+D:\introduction-website\server\src\public\public.controller.ts:118:31
+
+  115   @Query("q") q?: string
+  116 ) {
+  117   const query = (q ?? "").trim();
+→ 118   return this.prisma.person.findMany(
+The column `labsite.Person.teacherResumeZh` does not exist in the current database.[39m
+PrismaClientKnownRequestError: 
+Invalid `this.prisma.person.findMany()` invocation in
+D:\introduction-website\server\src\public\public.controller.ts:118:31
+
+  115   @Query("q") q?: string
+  116 ) {
+  117   const query = (q ?? "").trim();
+→ 118   return this.prisma.person.findMany(
+The column `labsite.Person.teacherResumeZh` does not exist in the current database.
+    at $n.handleRequestError (D:\introduction-website\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (D:\introduction-website\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (D:\introduction-website\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (D:\introduction-website\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async D:\introduction-website\node_modules\@nestjs\core\router\router-execution-context.js:46:28
+    at async D:\introduction-website\node_modules\@nestjs\core\router\router-proxy.js:9:17
+[31m[Nest] 88996  - [39m2026/03/27 11:45:32 [31m  ERROR[39m [38;5;3m[HttpExceptionFilter] [39m[31m
+Invalid `this.prisma.person.findMany()` invocation in
+D:\introduction-website\server\src\public\public.controller.ts:118:31
+
+  115   @Query("q") q?: string
+  116 ) {
+  117   const query = (q ?? "").trim();
+→ 118   return this.prisma.person.findMany(
+The column `labsite.Person.teacherResumeZh` does not exist in the current database.[39m
+PrismaClientKnownRequestError: 
+Invalid `this.prisma.person.findMany()` invocation in
+D:\introduction-website\server\src\public\public.controller.ts:118:31
+
+  115   @Query("q") q?: string
+  116 ) {
+  117   const query = (q ?? "").trim();
+→ 118   return this.prisma.person.findMany(
+The column `labsite.Person.teacherResumeZh` does not exist in the current database.
+    at $n.handleRequestError (D:\introduction-website\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (D:\introduction-website\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (D:\introduction-website\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (D:\introduction-website\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async D:\introduction-website\node_modules\@nestjs\core\router\router-execution-context.js:46:28
+    at async D:\introduction-website\node_modules\@nestjs\core\router\router-proxy.js:9:17
+[2J[3J[H[[90m12:05:48[0m] File change detected. Starting incremental compilation...
+
+[2J[3J[H[[90m13:05:49[0m] File change detected. Starting incremental compilation...
+
+[2J[3J[H[[90m14:05:50[0m] File change detected. Starting incremental compilation...
+
+[2J[3J[H[[90m15:05:51[0m] File change detected. Starting incremental compilation...
+
+[2J[3J[H[[90m16:05:52[0m] File change detected. Starting incremental compilation...
+
+[2J[3J[H[[90m17:05:52[0m] File change detected. Starting incremental compilation...
+
+npm error Lifecycle script `start:dev` failed with error:
+npm error code 1073807364
+npm error path D:\introduction-website\server
+npm error workspace lab-website-server@0.1.0
+npm error location D:\introduction-website\server
+npm error command failed
+npm error command C:\WINDOWS\system32\cmd.exe /d /s /c nest start --watch
