@@ -99,7 +99,7 @@
         :content="pickText(person, 'bio')"
       />
 
-      <div v-if="awards.length" class="card rounded-xl2 p-6">
+      <!-- <div v-if="awards.length" class="card rounded-xl2 p-6">
         <div class="flex items-center justify-between gap-3">
           <h2 class="text-xl font-semibold">{{ locale === "zh" ? "\u83b7\u5956\u8bb0\u5f55" : "Awards & Honors" }}</h2>
           <span class="text-xs opacity-65">{{ awards.length }}</span>
@@ -114,7 +114,7 @@
             <p v-if="a.date" class="mt-2 text-xs opacity-60">{{ formatDate(a.date) }}</p>
           </article>
         </div>
-      </div>
+      </div> -->
     </section>
   </div>
 
