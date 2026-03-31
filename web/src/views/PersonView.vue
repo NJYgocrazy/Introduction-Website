@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div v-if="person" class="person-page grid grid-cols-1 gap-6 lg:grid-cols-12 items-start">
     <section class="profile-pane card rounded-xl2 p-6 lg:col-span-4 h-fit">
       <div class="profile-top">
@@ -30,7 +30,7 @@
           class="btn rounded-lg px-3 py-2 text-sm"
           :href="`mailto:${person.email}`"
         >
-          {{ locale === "zh" ? "发送邮件" : "Email" }}
+          {{ locale === "zh" ? "\u53d1\u9001\u90ae\u4ef6" : "Email" }}
         </a>
         <a
           v-if="person.websiteUrl"
@@ -39,19 +39,19 @@
           target="_blank"
           rel="noreferrer"
         >
-          {{ locale === "zh" ? "个人主页" : "Website" }}
+          {{ locale === "zh" ? "\u4e2a\u4eba\u4e3b\u9875" : "Website" }}
         </a>
       </div>
 
       <RouterLink class="btn btn-primary mt-6 w-full rounded-lg px-4 py-2 text-sm" to="/people">
-        {{ locale === "zh" ? "返回人员列表" : "Back to People" }}
+        {{ locale === "zh" ? "\u8fd4\u56de\u4eba\u5458\u5217\u8868" : "Back to People" }}
       </RouterLink>
     </section>
 
     <section class="lg:col-span-8 space-y-5">
       <div class="intro-band card rounded-xl2 p-5">
         <div class="text-xs uppercase tracking-[0.18em] opacity-70">
-          {{ locale === "zh" ? "个人信息" : "Profile" }}
+          {{ locale === "zh" ? "\u4e2a\u4eba\u4fe1\u606f" : "Profile" }}
         </div>
         <div class="mt-2 text-lg font-semibold leading-8">
           {{ summaryLine }}
@@ -60,15 +60,18 @@
 
       <div v-if="isTeacher" class="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <InfoBlock
-          :title="locale === 'zh' ? '个人简历' : 'Biography'"
+          :title="locale === 'zh' ? '\u4e2a\u4eba\u7b80\u5386' : 'Biography'"
+          tone="biography"
           :content="pickText(person, 'teacherResume')"
         />
         <InfoBlock
-          :title="locale === 'zh' ? '主要研究领域' : 'Research Areas'"
+          :title="locale === 'zh' ? '\u4e3b\u8981\u7814\u7a76\u9886\u57df' : 'Research Areas'"
+          tone="research"
           :content="pickText(person, 'teacherResearch')"
         />
         <InfoBlock
-          :title="locale === 'zh' ? '代表性成果' : 'Representative Achievements'"
+          :title="locale === 'zh' ? '\u4ee3\u8868\u6027\u6210\u679c' : 'Representative Achievements'"
+          tone="achievement"
           :content="pickText(person, 'teacherAchievements')"
           class="sm:col-span-2"
         />
@@ -76,15 +79,15 @@
 
       <div v-else-if="isStudent" class="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <InfoBlock
-          :title="locale === 'zh' ? '主研方向' : 'Research Focus'"
+          :title="locale === 'zh' ? '\u4e3b\u7814\u65b9\u5411' : 'Research Focus'"
           :content="pickText(person, 'studentResearch')"
         />
         <InfoBlock
-          :title="locale === 'zh' ? '获得奖项' : 'Awards'"
+          :title="locale === 'zh' ? '\u83b7\u5f97\u5956\u9879' : 'Awards'"
           :content="pickText(person, 'studentAwards')"
         />
         <InfoBlock
-          :title="locale === 'zh' ? '就业情况' : 'Employment'"
+          :title="locale === 'zh' ? '\u5c31\u4e1a\u60c5\u51b5' : 'Employment'"
           :content="pickText(person, 'studentEmployment')"
           class="sm:col-span-2"
         />
@@ -92,13 +95,13 @@
 
       <InfoBlock
         v-else
-        :title="locale === 'zh' ? '成员介绍' : 'Member Profile'"
+        :title="locale === 'zh' ? '\u6210\u5458\u4ecb\u7ecd' : 'Member Profile'"
         :content="pickText(person, 'bio')"
       />
 
       <div v-if="awards.length" class="card rounded-xl2 p-6">
         <div class="flex items-center justify-between gap-3">
-          <h2 class="text-xl font-semibold">{{ locale === "zh" ? "获奖记录" : "Awards & Honors" }}</h2>
+          <h2 class="text-xl font-semibold">{{ locale === "zh" ? "\u83b7\u5956\u8bb0\u5f55" : "Awards & Honors" }}</h2>
           <span class="text-xs opacity-65">{{ awards.length }}</span>
         </div>
 
@@ -116,7 +119,7 @@
   </div>
 
   <div v-else class="card rounded-xl2 p-6 text-sm opacity-80">
-    {{ locale === "zh" ? "加载中或未找到该成员。" : "Loading or not found." }}
+    {{ locale === "zh" ? "\u52a0\u8f7d\u4e2d\u6216\u672a\u627e\u5230\u8be5\u6210\u5458\u3002" : "Loading or not found." }}
   </div>
 </template>
 
@@ -168,16 +171,20 @@ const InfoBlock = defineComponent({
   name: "InfoBlock",
   props: {
     title: { type: String, required: true },
+    tone: { type: String, default: "biography" },
     content: { type: String, default: "" }
   },
   setup(props) {
+    const content = props.content?.trim() || "-";
     return () =>
-      h("article", { class: "card info-block rounded-xl2 p-5" }, [
-        h("div", { class: "text-xs uppercase tracking-[0.14em] font-semibold opacity-70" }, props.title),
+      h("article", { class: `card info-block info-block--${props.tone} rounded-xl2 p-5` }, [
+        h("div", { class: "info-block-head" }, [
+          h("h3", { class: "info-block-title" }, props.title)
+        ]),
         h(
           "div",
-          { class: "mt-3 text-sm leading-7 whitespace-pre-line opacity-90" },
-          props.content?.trim() || "-"
+          { class: "info-block-body", "data-empty": content === "-" ? "true" : "false" },
+          content
         )
       ]);
   }
@@ -193,20 +200,20 @@ const role = computed(() => String(person.value?.role ?? "").toLowerCase());
 const isTeacher = computed(() => role.value === "teacher" || role.value === "faculty");
 const isStudent = computed(() => role.value === "student" || role.value === "phd" || role.value === "master");
 
-const fallbackTitle = computed(() => (locale.value === "zh" ? "未填写头衔" : "Title not specified"));
+const fallbackTitle = computed(() => (locale.value === "zh" ? "\u672a\u586b\u5199\u5934\u8854" : "Title not specified"));
 
 const roleText = computed(() => {
   if (locale.value !== "zh") return person.value?.role ?? "Member";
-  if (isTeacher.value) return "教师";
-  if (isStudent.value) return "学生";
-  return person.value?.role ?? "成员";
+  if (isTeacher.value) return "\u6559\u5e08";
+  if (isStudent.value) return "\u5b66\u751f";
+  return person.value?.role ?? "\u6210\u5458";
 });
 
 const summaryLine = computed(() => {
   if (locale.value === "zh") {
-    if (isTeacher.value) return "聚焦科研方向、教学经历与代表性成果。";
-    if (isStudent.value) return "展示研究方向、奖项与发展路径。";
-    return "查看该成员的个人信息与相关经历。";
+    if (isTeacher.value) return "\u805a\u7126\u79d1\u7814\u65b9\u5411\u3001\u6559\u5b66\u7ecf\u5386\u4e0e\u4ee3\u8868\u6027\u6210\u679c\u3002";
+    if (isStudent.value) return "\u5c55\u793a\u7814\u7a76\u65b9\u5411\u3001\u5956\u9879\u4e0e\u53d1\u5c55\u8def\u5f84\u3002";
+    return "\u67e5\u770b\u8be5\u6210\u5458\u7684\u4e2a\u4eba\u4fe1\u606f\u4e0e\u76f8\u5173\u7ecf\u5386\u3002";
   }
 
   if (isTeacher.value) return "Focuses on research themes, teaching background, and representative outcomes.";
@@ -247,10 +254,7 @@ onMounted(load);
 watch(() => route.params.id, load);
 </script>
 
-<style scoped>
-
-
-
+<style >
 .person-page {
   position: relative;
 }
@@ -345,12 +349,89 @@ watch(() => route.params.id, load);
 }
 
 .info-block {
-  transition: transform 220ms ease, box-shadow 220ms ease;
+  position: relative;
+  overflow: hidden;
+  border-color: rgba(148, 163, 184, 0.38);
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.info-block::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  opacity: 0.9;
+}
+
+.info-block-head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.58rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.34);
+  padding-bottom: 0.82rem;
+}
+
+.info-block-title {
+  margin: 0;
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 0.28rem 0.7rem;
+  border-radius: 0.7rem;
+  /* font-size: 1.34rem !important; */
+  line-height: 1.2;
+  font-weight: 900 !important;
+  letter-spacing: 0.01em;
+  color: rgba(15, 23, 42, 1);
+  background: rgba(15, 23, 42, 0.05);
+  /* font-weight: bold; */
+}
+
+.info-block-body {
+  margin-top: 0.82rem;
+  padding-top: 0.05rem;
+  font-size: 0.96rem;
+  line-height: 1.72;
+  font-weight: 500;
+  white-space: pre-line;
+  color: rgba(71, 85, 105, 0.92);
+}
+
+.info-block-body[data-empty="true"] {
+  color: rgba(100, 116, 139, 0.92);
+  font-style: italic;
+}
+
+.info-block--biography .info-block-title {
+  color: rgba(30, 64, 175, 1);
+  background: rgba(30, 64, 175, 0.12);
+}
+
+.info-block--biography::before {
+  background: linear-gradient(180deg, rgba(30, 64, 175, 0.95), rgba(30, 64, 175, 0.35));
+}
+
+.info-block--research .info-block-title {
+  color: rgba(6, 95, 70, 1);
+  background: rgba(6, 95, 70, 0.12);
+}
+
+.info-block--research::before {
+  background: linear-gradient(180deg, rgba(6, 95, 70, 0.92), rgba(6, 95, 70, 0.34));
+}
+
+.info-block--achievement .info-block-title {
+  color: rgba(146, 64, 14, 1);
+  background: rgba(146, 64, 14, 0.12);
+}
+
+.info-block--achievement::before {
+  background: linear-gradient(180deg, rgba(146, 64, 14, 0.94), rgba(146, 64, 14, 0.35));
 }
 
 .info-block:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.11);
+  transform: translateY(-3px);
+  border-color: rgba(15, 58, 120, 0.35);
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.12);
 }
 
 .award-item {
@@ -372,6 +453,16 @@ watch(() => route.params.id, load);
   .avatar-wrap {
     width: 5.9rem;
     height: 5.9rem;
+  }
+
+  .info-block-title {
+    font-size: 1.2rem !important;
+    line-height: 1.2;
+  }
+
+  .info-block-body {
+    font-size: 0.92rem;
+    line-height: 1.74;
   }
 }
 </style>
