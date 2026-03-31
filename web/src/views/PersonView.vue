@@ -1,6 +1,6 @@
 ﻿<template>
-  <div v-if="person" class="person-page grid grid-cols-1 gap-6 lg:grid-cols-12">
-    <section class="profile-pane card rounded-xl2 p-6 lg:col-span-4">
+  <div v-if="person" class="person-page grid grid-cols-1 gap-6 lg:grid-cols-12 items-start">
+    <section class="profile-pane card rounded-xl2 p-6 lg:col-span-4 h-fit">
       <div class="profile-top">
         <div class="badge-row">
           <span class="role-chip">{{ roleText }}</span>
@@ -248,6 +248,9 @@ watch(() => route.params.id, load);
 </script>
 
 <style scoped>
+
+
+
 .person-page {
   position: relative;
 }
